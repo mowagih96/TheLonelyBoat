@@ -57,6 +57,7 @@ boxLoader.load(
     requestAnimationFrame(moveBox.bind(moveBox,object));
     requestAnimationFrame(moveBox.bind(moveBox,boxClone1));
     requestAnimationFrame(moveBox.bind(moveBox,boxClone2));
+    requestAnimationFrame(rotateBox.bind(rotateBox,boxClone2));
   }
 );
 
@@ -179,11 +180,10 @@ scene.add(rain);
 var hurricaneGeometry = new THREE.PlaneGeometry(300, 300 , 300);
 var hurricaneMaterial = [
   new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load("textures/tornado.png"),side: THREE.DoubleSide,alphaTest: 0.4}),
-  new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load("textures/tornado.png"),side: THREE.DoubleSide,alphaTest: 0.4})
+
 ];
 var hurricane = new THREE.Mesh(hurricaneGeometry , hurricaneMaterial);
 hurricane.position.set(-150,60,-450);
-hurricane.rotation.x = 3;
 scene.add(hurricane);
 
 //Sounds
@@ -218,6 +218,14 @@ function rotateBoat(object){
   requestAnimationFrame(rotateBoat.bind(rotateBoat,object));
 }
 
+function rotateBox(object){
+  if(hurricane.position.z >= object.position.z - 27 && hurricane.position.z <= object.position.z + 27){
+    object.rotation.x += 0.05;
+    object.position.y -= 12;
+  }
+  requestAnimationFrame(rotateBox.bind(rotateBox,object));
+}
+
 function moveBox(object){
   object.position.y = Math.cos(x) - 20;
   x += 0.1;
@@ -230,7 +238,7 @@ function render(){
   water.material.uniforms.distortionScale.value = 3.7;
   rain.position.y -= 1;
   if(rain.position.y == -400) rain.position.y = 400;
-  hurricane.rotation.y += Math.PI;
+  hurricane.rotation.y += Math.PI/2;
   hurricane.position.z += 1;
   renderer.render(scene,camera);
   requestAnimationFrame(render);
