@@ -1,5 +1,5 @@
 //Global variables:
-var x = -30;
+var x = -30 , a = 0;
 
 //Renderer:
 var renderer = new THREE.WebGLRenderer({canvas:document.getElementById('drawingBoard'),antialias:true});
@@ -9,7 +9,7 @@ renderer.setSize(window.innerWidth , window.innerHeight);
 
 //Camera:
 var camera = new THREE.PerspectiveCamera(35,(window.innerWidth/window.innerHeight),0.1,3000);
-camera.position.set( 0, 50, 300 );
+camera.position.set( 0, 50, 300);
 
 //Update the window on resize
 window.addEventListener('resize',function(){
@@ -76,15 +76,15 @@ function stopLFTimer(){
 }
 
 //Lightining bolt
-var planeGeometry = new THREE.PlaneGeometry( 100, 100);
+var planeGeometry = new THREE.PlaneGeometry( 190, 190);
 var planeMaterial = [
   new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load("textures/bolt.png"),side: THREE.DoubleSide,alphaTest: 0.4}),
   new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load("textures/bolt.png"),side: THREE.DoubleSide,alphaTest: 0.4})
 ];
 var bolt = new THREE.Mesh(planeGeometry , planeMaterial);
-bolt.position.set(-150,50,-350);
+bolt.position.set(-150,90,-350);
 var cloneBolt = bolt.clone();
-cloneBolt.position.x = 150;
+cloneBolt.position.x = 180;
 
 //Add the bolts to the scene after 5 seconds
 window.setTimeout(function(){
@@ -96,7 +96,7 @@ window.setTimeout(function(){
     sound.setBuffer(buffer);
     sound.setLoop(false);
     sound.setVolume(1.5);
-    //sound.play();
+    sound.play();
   });
   scene.add(bolt);
   scene.add(cloneBolt);
@@ -195,7 +195,18 @@ audioLoader.load('sounds/rain.mp3', function(buffer) {
   sound.setBuffer(buffer);
   sound.setLoop(true);
   sound.setVolume(0.5);
-  //sound.play();
+  sound.play();
+});
+
+var audioListener1 = new THREE.AudioListener();
+camera.add(audioListener1);
+var sound1 = new THREE.Audio(audioListener1);
+var audioLoader1 = new THREE.AudioLoader();
+audioLoader1.load('sounds/wind.mp3', function(buffer) {
+  sound1.setBuffer(buffer);
+  sound1.setLoop(true);
+  sound1.setVolume(1.5);
+  sound1.play();
 });
 
 //Shadows:
@@ -214,14 +225,17 @@ function moveBoat(object){
 function rotateBoat(object){
   if(hurricane.position.z >= object.position.z - 27 && hurricane.position.z <= object.position.z + 27){
     object.rotation.x += 0.09;
+    object.position.y -= 3;
   }
+  else if(object.position.y <= -10) object.position.y += 1;
   requestAnimationFrame(rotateBoat.bind(rotateBoat,object));
 }
-
 function rotateBox(object){
   if(hurricane.position.z >= object.position.z - 27 && hurricane.position.z <= object.position.z + 27){
-    object.rotation.x += 0.05;
-    object.position.y -= 12;
+    object.position.x -= 1;
+    object.position.z += 0.5;
+    object.rotation.x += 0.1;
+    object.rotation.y += 0.1;
   }
   requestAnimationFrame(rotateBox.bind(rotateBox,object));
 }
@@ -232,13 +246,12 @@ function moveBox(object){
   requestAnimationFrame(moveBox.bind(moveBox,object));
 }
 
-
 function render(){
   water.material.uniforms.time.value += 1.0 / 60.0;
   water.material.uniforms.distortionScale.value = 3.7;
   rain.position.y -= 1;
   if(rain.position.y == -400) rain.position.y = 400;
-  hurricane.rotation.y += Math.PI/2;
+  hurricane.rotation.y += Math.PI/4;
   hurricane.position.z += 1;
   renderer.render(scene,camera);
   requestAnimationFrame(render);
