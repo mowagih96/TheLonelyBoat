@@ -1,17 +1,14 @@
-  var go = false;
+  var play = false;
 
   window.onload = function() {
   if(!window.location.hash) {
-      window.location = window.location + '#loaded';
-      console.log("1");
+      window.location = window.location + '#scene';
       window.location.reload();
-      console.log("2");
   }
   else{
-    console.log("3");
     document.getElementById("drawingBoard").style.display = 'inline';
     document.getElementById("loader").style.display = 'none';
-    go = true;
+    play = true;
   }
 }
   //Global variables:
@@ -102,7 +99,7 @@
   var cloneBolt = bolt.clone();
   cloneBolt.position.x = 180;
 
-  //Add the bolts to the scene after 5 seconds
+  //Add the bolts to the scene after 15 seconds
   window.setTimeout(function(){
     scene.add(bolt);
     scene.add(cloneBolt);
@@ -118,7 +115,7 @@
     });
   },15000);
 
-  //Remove the bolts from the scene after 3 seconds
+  //Remove the bolts from the scene after 18 seconds
   window.setTimeout(function(){
     scene.remove(bolt);
     scene.remove(cloneBolt);
@@ -138,7 +135,7 @@
   var skyBox = new THREE.Mesh(cubeGeometry , cubeMaterial);
   scene.add(skyBox);
 
-  //Change the scene to night after 10 seconds
+  //Change the scene to night after 15 seconds
   window.setTimeout(function(){
     scene.remove(skyBox);
     cubeGeometry.dispose();
@@ -156,10 +153,10 @@
   },15000);
 
   //Ocean:
-  var water = new THREE.Water(1000,1000,
+  var water = new THREE.Water(1530,1000,
         {
-          textureWidth: 512,
-          textureHeight: 512,
+          textureWidth: 1530,
+          textureHeight: 1000,
           waterNormals: new THREE.TextureLoader().load('textures/waternormals.jpg', function ( texture ) {
             texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
           }),
@@ -191,18 +188,7 @@
   var rain = new THREE.Points(pointGeometry,pointMaterial);
   rain.scale.y = 8.0;
   scene.add(rain);
-
-  //Hurricane
-  var hurricaneGeometry = new THREE.PlaneGeometry(300, 300 , 300);
-  var hurricaneMaterial = [
-    new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load("textures/tornado.png"),side: THREE.DoubleSide,alphaTest: 0.4}),
-
-  ];
-  var hurricane = new THREE.Mesh(hurricaneGeometry , hurricaneMaterial);
-  hurricane.position.set(-150,60,-450);
-  scene.add(hurricane);
-
-  //Sounds
+  //Rain Sound:
   var audioListener = new THREE.AudioListener();
   camera.add(audioListener);
   var sound = new THREE.Audio(audioListener);
@@ -211,9 +197,19 @@
     sound.setBuffer(buffer);
     sound.setLoop(true);
     sound.setVolume(0.5);
-    if(go) sound.play();
+    if(play) sound.play();
   });
 
+  //Hurricane
+  var hurricaneGeometry = new THREE.PlaneGeometry(300, 300 , 300);
+  var hurricaneMaterial = [
+    new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load("textures/tornado.png"),side: THREE.DoubleSide,alphaTest: 0.4}),
+  ];
+  var hurricane = new THREE.Mesh(hurricaneGeometry , hurricaneMaterial);
+  hurricane.position.set(-150,60,-450);
+  scene.add(hurricane);
+
+  //Wind Sound:
   var audioListener1 = new THREE.AudioListener();
   camera.add(audioListener1);
   var sound1 = new THREE.Audio(audioListener1);
@@ -222,7 +218,7 @@
     sound1.setBuffer(buffer);
     sound1.setLoop(true);
     sound1.setVolume(1.5);
-    if(go) sound1.play();
+    if(play) sound1.play();
   });
 
   //Shadows:
@@ -234,16 +230,23 @@
 
   //Functions
   function moveBoat(object){
-    object.position.x -= 0.3;
-    requestAnimationFrame(moveBoat.bind(moveBoat,object));
+    if(object.position.x <= -770){
+      scene.remove(boatLoader);
+      scene.remove(object);
+    }
+    else{
+      object.position.x -= 0.3;
+      requestAnimationFrame(moveBoat.bind(moveBoat,object));
+    }
   }
 
   function rotateBoat(object){
     if(hurricane.position.z >= object.position.z - 27 && hurricane.position.z <= object.position.z + 27){
       object.rotation.x += 0.09;
-      object.position.y -= 3;
+      object.rotation.z += 0.09;
+      object.position.y -= 0.9;
     }
-    else if(object.position.y <= -10) object.position.y += 1;
+    else if(object.position.y <= -10) object.position.y += 0.2;
     requestAnimationFrame(rotateBoat.bind(rotateBoat,object));
   }
   function rotateBox(object){
@@ -268,7 +271,12 @@
     rain.position.y -= 1;
     if(rain.position.y == -400) rain.position.y = 400;
     hurricane.rotation.y += Math.PI/4;
-    hurricane.position.z += 1;
+    if(hurricane.position.z <= 520) hurricane.position.z += 1;
+    else{
+      scene.remove(hurricane);
+      hurricaneGeometry.dispose();
+    }
+
     renderer.render(scene,camera);
     requestAnimationFrame(render);
   }
