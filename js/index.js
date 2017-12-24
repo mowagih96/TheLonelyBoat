@@ -1,3 +1,5 @@
+  var go = false;
+
   window.onload = function() {
   if(!window.location.hash) {
       window.location = window.location + '#loaded';
@@ -9,6 +11,7 @@
     console.log("3");
     document.getElementById("drawingBoard").style.display = 'inline';
     document.getElementById("loader").style.display = 'none';
+    go = true;
   }
 }
   //Global variables:
@@ -101,6 +104,8 @@
 
   //Add the bolts to the scene after 5 seconds
   window.setTimeout(function(){
+    scene.add(bolt);
+    scene.add(cloneBolt);
     var audioListener = new THREE.AudioListener();
     camera.add(audioListener);
     var sound = new THREE.Audio(audioListener);
@@ -111,8 +116,6 @@
       sound.setVolume(1.5);
       sound.play();
     });
-    scene.add(bolt);
-    scene.add(cloneBolt);
   },15000);
 
   //Remove the bolts from the scene after 3 seconds
@@ -208,7 +211,7 @@
     sound.setBuffer(buffer);
     sound.setLoop(true);
     sound.setVolume(0.5);
-    sound.play();
+    if(go) sound.play();
   });
 
   var audioListener1 = new THREE.AudioListener();
@@ -219,7 +222,7 @@
     sound1.setBuffer(buffer);
     sound1.setLoop(true);
     sound1.setVolume(1.5);
-    sound1.play();
+    if(go) sound1.play();
   });
 
   //Shadows:
