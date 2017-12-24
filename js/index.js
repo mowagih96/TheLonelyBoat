@@ -129,7 +129,7 @@
   var audioListener = new THREE.AudioListener();
   camera.add(audioListener);
   var sound = new THREE.Audio(audioListener);
-  sound.setBuffer(buffer2);
+  sound.setBuffer();
   sound.setLoop(true);
   sound.setVolume(0.5);
   sound.play();
