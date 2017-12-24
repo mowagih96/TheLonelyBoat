@@ -1,3 +1,5 @@
+window.setTimeout(start,10000);
+function start(){
   //Global variables:
   var x = -30 , a = 0;
 
@@ -28,6 +30,17 @@
   var controller = new THREE.OrbitControls(camera,renderer.domElement);
 
   //models
+  scene.add(boatObject);
+  requestAnimationFrame(moveBoat.bind(moveBoat,boatObject));
+  requestAnimationFrame(rotateBoat.bind(rotateBoat,boatObject));
+
+  scene.add(boxObject);
+  scene.add(boxClone1);
+  scene.add(boxClone2);
+  requestAnimationFrame(moveBox.bind(moveBox,boxObject));
+  requestAnimationFrame(moveBox.bind(moveBox,boxClone1));
+  requestAnimationFrame(moveBox.bind(moveBox,boxClone2));
+  requestAnimationFrame(rotateBox.bind(rotateBox,boxClone2));
 
 
 
@@ -191,3 +204,4 @@
     renderer.render(scene,camera);
     requestAnimationFrame(render);
   }
+}

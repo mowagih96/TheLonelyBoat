@@ -1,13 +1,12 @@
 //Models loader
+var boatObject , boxObject , boxClone1 , boxClone2;
 var boatLoader = new THREE.ObjectLoader();
 boatLoader.load(
   'models/boat.json',
   function(object){
+    boatObject = object;
     object.scale.set(0.5,0.5,0.5);
     object.position.y = -10;
-    scene.add(object);
-    requestAnimationFrame(moveBoat.bind(moveBoat,object));
-    requestAnimationFrame(rotateBoat.bind(rotateBoat,object));
   }
 );
 
@@ -15,20 +14,16 @@ var boxLoader = new THREE.ObjectLoader();
 boxLoader.load(
   'models/box.json',
   function(object){
+    boxObject = object;
     object.scale.set(20.0,20.0,20.0);
     object.roughness = 3.5;
-    var boxClone1 = object.clone();
-    var boxClone2 = object.clone();
+    boxClone1 = object.clone();
+    boxClone2 = object.clone();
     object.position.set(100,-30,-100);
     boxClone1.position.set(50,-30,-300);
     boxClone2.position.set(-150,-30,-300);
-    scene.add(object);
-    scene.add(boxClone1);
-    scene.add(boxClone2);
-    requestAnimationFrame(moveBox.bind(moveBox,object));
-    requestAnimationFrame(moveBox.bind(moveBox,boxClone1));
-    requestAnimationFrame(moveBox.bind(moveBox,boxClone2));
-    requestAnimationFrame(rotateBox.bind(rotateBox,boxClone2));
+
+
   }
 );
 
