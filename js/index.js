@@ -27,39 +27,9 @@
   //Controller
   var controller = new THREE.OrbitControls(camera,renderer.domElement);
 
-  //Models loader
-  var boatLoader = new THREE.ObjectLoader();
-  boatLoader.load(
-    'models/boat.json',
-    function(object){
-      object.scale.set(0.5,0.5,0.5);
-      object.position.y = -10;
-      scene.add(object);
-      requestAnimationFrame(moveBoat.bind(moveBoat,object));
-      requestAnimationFrame(rotateBoat.bind(rotateBoat,object));
-    }
-  );
+  //models
 
-  var boxLoader = new THREE.ObjectLoader();
-  boxLoader.load(
-    'models/box.json',
-    function(object){
-      object.scale.set(20.0,20.0,20.0);
-      object.roughness = 3.5;
-      var boxClone1 = object.clone();
-      var boxClone2 = object.clone();
-      object.position.set(100,-30,-100);
-      boxClone1.position.set(50,-30,-300);
-      boxClone2.position.set(-150,-30,-300);
-      scene.add(object);
-      scene.add(boxClone1);
-      scene.add(boxClone2);
-      requestAnimationFrame(moveBox.bind(moveBox,object));
-      requestAnimationFrame(moveBox.bind(moveBox,boxClone1));
-      requestAnimationFrame(moveBox.bind(moveBox,boxClone2));
-      requestAnimationFrame(rotateBox.bind(rotateBox,boxClone2));
-    }
-  );
+
 
   //Lights:
   renderer.shadowMap.enabled = true;
@@ -77,10 +47,6 @@
 
   //Lightining bolt
   var planeGeometry = new THREE.PlaneGeometry( 190, 190);
-  var planeMaterial = [
-    new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load("textures/bolt.png"),side: THREE.DoubleSide,alphaTest: 0.4}),
-    new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load("textures/bolt.png"),side: THREE.DoubleSide,alphaTest: 0.4})
-  ];
   var bolt = new THREE.Mesh(planeGeometry , planeMaterial);
   bolt.position.set(-150,90,-350);
   var cloneBolt = bolt.clone();
@@ -91,13 +57,10 @@
     var audioListener = new THREE.AudioListener();
     camera.add(audioListener);
     var sound = new THREE.Audio(audioListener);
-    var audioLoader = new THREE.AudioLoader();
-    audioLoader.load('sounds/bolt.mp3', function(buffer) {
-      sound.setBuffer(buffer);
-      sound.setLoop(false);
-      sound.setVolume(1.5);
-      sound.play();
-    });
+    sound.setBuffer(buffer1);
+    sound.setLoop(false);
+    sound.setVolume(1.5);
+    sound.play();
     scene.add(bolt);
     scene.add(cloneBolt);
   },15000);
@@ -111,14 +74,6 @@
 
   //Skybox:
   var cubeGeometry = new THREE.CubeGeometry(window.innerWidth,window.innerHeight,1000);
-  var cubeMaterial = [
-    new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load("textures/stormydays_ft.png"),side: THREE.DoubleSide}),
-    new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load("textures/stormydays_bk.png"),side: THREE.DoubleSide}),
-    new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load("textures/stormydays_up.png"),side: THREE.DoubleSide}),
-    new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load("textures/stormydays_dn.png"),side: THREE.DoubleSide}),
-    new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load("textures/stormydays_rt.png"),side: THREE.DoubleSide}),
-    new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load("textures/stormydays_lf.png"),side: THREE.DoubleSide})
-  ];
   var skyBox = new THREE.Mesh(cubeGeometry , cubeMaterial);
   scene.add(skyBox);
 
@@ -126,14 +81,6 @@
   window.setTimeout(function(){
     scene.remove(skyBox);
     cubeGeometry.dispose();
-    var nightCubeMaterial = [
-      new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load("textures/nightsky_ft.png"),side: THREE.DoubleSide}),
-      new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load("textures/nightsky_bk.png"),side: THREE.DoubleSide}),
-      new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load("textures/nightsky_up.png"),side: THREE.DoubleSide}),
-      new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load("textures/nightsky_dn.png"),side: THREE.DoubleSide}),
-      new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load("textures/nightsky_rt.png"),side: THREE.DoubleSide}),
-      new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load("textures/nightsky_lf.png"),side: THREE.DoubleSide})
-    ];
     var nightSkyBox = new THREE.Mesh(cubeGeometry , nightCubeMaterial);
     scene.fog = new THREE.Fog(0x6f6767, 3,1000);
     scene.add(nightSkyBox);
@@ -168,20 +115,12 @@
     point.z = (Math.random() * 800) - 400;
     pointGeometry.vertices.push(point);
   }
-  var rainDrop = new THREE.TextureLoader().load('textures/drop.png');
-  rainDrop.wrapS = rainDrop.wrapT = THREE.RepeatWrapping;
-  var pointMaterial = new THREE.PointsMaterial({color: 'rgba(174,194,224)',size: 1.5 , map: rainDrop});
-  pointMaterial.alphaTest = 0.5;
   var rain = new THREE.Points(pointGeometry,pointMaterial);
   rain.scale.y = 8.0;
   scene.add(rain);
 
   //Hurricane
   var hurricaneGeometry = new THREE.PlaneGeometry(300, 300 , 300);
-  var hurricaneMaterial = [
-    new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load("textures/tornado.png"),side: THREE.DoubleSide,alphaTest: 0.4}),
-
-  ];
   var hurricane = new THREE.Mesh(hurricaneGeometry , hurricaneMaterial);
   hurricane.position.set(-150,60,-450);
   scene.add(hurricane);
@@ -190,24 +129,20 @@
   var audioListener = new THREE.AudioListener();
   camera.add(audioListener);
   var sound = new THREE.Audio(audioListener);
-  var audioLoader = new THREE.AudioLoader();
-  audioLoader.load('sounds/rain.mp3', function(buffer) {
-    sound.setBuffer(buffer);
-    sound.setLoop(true);
-    sound.setVolume(0.5);
-    sound.play();
-  });
+  sound.setBuffer(buffer2);
+  sound.setLoop(true);
+  sound.setVolume(0.5);
+  sound.play();
+  rain.add(sound);
 
   var audioListener1 = new THREE.AudioListener();
   camera.add(audioListener1);
   var sound1 = new THREE.Audio(audioListener1);
-  var audioLoader1 = new THREE.AudioLoader();
-  audioLoader1.load('sounds/wind.mp3', function(buffer) {
-    sound1.setBuffer(buffer);
-    sound1.setLoop(true);
-    sound1.setVolume(1.5);
-    sound1.play();
-  });
+  sound1.setBuffer(buffer3);
+  sound1.setLoop(true);
+  sound1.setVolume(1.5);
+  sound1.play();
+
 
   //Shadows:
   renderer.shadowMap.enabled = true;
