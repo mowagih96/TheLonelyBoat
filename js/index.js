@@ -1,3 +1,12 @@
+  window.onload = function() {
+  if(!window.location.hash) {
+      window.location = window.location + '#loaded';
+      window.location.reload();
+  }
+  else{
+    document.getElementById("drawingBoard").style.display = 'inline';
+  }
+}
   //Global variables:
   var x = -30 , a = 0;
 
