@@ -1,10 +1,14 @@
   window.onload = function() {
   if(!window.location.hash) {
       window.location = window.location + '#loaded';
+      console.log("1");
       window.location.reload();
+      console.log("2");
   }
   else{
+    console.log("3");
     document.getElementById("drawingBoard").style.display = 'inline';
+    document.getElementById("loader").style.display = 'none';
   }
 }
   //Global variables:
