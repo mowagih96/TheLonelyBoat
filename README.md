@@ -4,6 +4,8 @@
 
 ![alt text](https://github.com/MohamedWagih96/TheLonelyBoat/blob/master/scene.png)
 
+اث : - [ ] An uncompleted task
+          - [x] A completed task
  
 
 <details>
