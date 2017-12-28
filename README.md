@@ -3,7 +3,7 @@
 <p align="center">
  <div>A stormy rainy dynamic scene created by using ThreeJS</div>
  <br />
- Check out the<a href="https://the-lonely-boat.herokuapp.com">Live Demo!</a>
+ Check out the <a href="https://the-lonely-boat.herokuapp.com">Live Demo!</a>
 </p>
 
 ![alt text](https://github.com/MohamedWagih96/TheLonelyBoat/blob/master/scene.png)
