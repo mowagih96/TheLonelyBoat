@@ -1,5 +1,6 @@
 <p align="center">
   CSE368: Computer Graphics Project
+  <br />
   <a href="https://the-lonely-boat.herokuapp.com">Live Demo!</a>
 </p>
 
