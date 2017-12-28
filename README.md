@@ -7,6 +7,7 @@
 ![alt text](https://github.com/MohamedWagih96/TheLonelyBoat/blob/master/scene.png)
 
 To do list :
+<hr />
 <br />
 1 - Making the ocean more dynamic with the meshes
 <br />
