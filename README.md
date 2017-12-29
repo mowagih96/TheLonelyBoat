@@ -31,7 +31,7 @@ Submitted to : Dr.Mohamed Rehan & Eng.Ahmed Fathy
  <br />
  The project consists of 2 scenes (sunset and night time scenes)
  <br />
- The scene starts with a deserted boat being away pushed by the wind's and the ocean's force in addition to 3 fallen boxes off of it as the sun sets while the rain is falling non stop and a mad hurricane waiting to crush it.
+ The scene starts with a deserted boat being pushed away by the wind's and the ocean's force in addition to 3 fallen boxes off of it as the sun sets while the rain is falling non stop and a mad hurricane waiting to crush it.
  <br />
  The sunlight's intensity will start to fade away as the sun goes down after 15 seconds from the initial scene's launch.
  <br />
@@ -43,13 +43,13 @@ Submitted to : Dr.Mohamed Rehan & Eng.Ahmed Fathy
  <h3>Some tricks :</h3>
  The hurricane you see isn't a fancy 3D object like cone or cylinder or whatever it's just a simple 2D plane by making it rotates 45 degrees around it's y-axis you'll get the illusion of seeing a rotating cone , pretty cool eh?
  <br />
- The rain you see isn't created by any fancy engines it's just a bunch of simple 2D points scattered at random positions in the scene.
+ The rain you see isn't created by any fancy engines it's just a bunch of simple 2D points scattered at random positions around the scene.
  <br />
- The simulation of the boxes motion is pretty simple , by using the cosine wave you'll see the boxing moving upwards and downwards pretty fast as if they were trying to float like in reality.
+ The simulation of the boxes' motion is pretty simple , by using the cosine wave you'll see the boxes oscillates on the y-axis as if they were trying to float like in reality.
  <br />
 </p> 
 <details>
- <summary><h3>To do list : (In the future)<h3></summary>
+ <summary>To do list : (In the future)</summary>
  <div>1 - Making the ocean more dynamic with the meshes</div>
  <div>2 - Adding Sun , Moon , Wind , Human to the scene</div>
 </details>
