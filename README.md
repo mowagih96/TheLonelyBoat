@@ -17,7 +17,7 @@ Submitted to : Dr.Mohamed Rehan & Eng.Ahmed Fathy
 <p>
  <h3>Features :</h3>
  <br />
- You can traverse through the scene by holding the mouse's right click and move either to the left or the right.
+ You can traverse through the scene by holding the mouse's right click and move to the left or the right or upwards or downwards or even diagonally.
  <br />
  You can rotate the camera's view direction by holding the mouse's left click and move in 360 degree.
  <br />
