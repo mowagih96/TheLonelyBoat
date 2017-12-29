@@ -49,7 +49,7 @@ Submitted to : Dr.Mohamed Rehan & Eng.Ahmed Fathy
  <br />
 </p> 
 <details>
- <summary><h3>To do list : (In the future)</h3></summary>
+ <h3><summary>To do list : (In the future)</summary><h3>
  <div>1 - Making the ocean more dynamic with the meshes</div>
  <div>2 - Adding Sun , Moon , Wind , Human to the scene</div>
 </details>
