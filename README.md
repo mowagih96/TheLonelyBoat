@@ -35,7 +35,9 @@
 <p>
  <h3>Some tricks :</h3>
  The hurricane you see isn't a fancy 3D object like cone or cylinder or whatever it's just a simple 2D plane by making it rotates 45 degrees around it's y-axis you'll get the illusion of seeing a rotating cone , pretty cool eh?
+ <br />
  The rain you see isn't created by any fancy engines it's just a simple points in random positions in the scene.
+ <br />
  The simulation of the boxes motion is pretty simple , the cosine wave and that's it.
  <br />
 </p> 
