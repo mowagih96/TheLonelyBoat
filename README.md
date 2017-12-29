@@ -10,12 +10,15 @@
 <p>
  <h3>Features :</h3>
  <br />
- You can traverse through the scene by holding the mouse's right click and move either to the left or the right
+ You can traverse through the scene by holding the mouse's right click and move either to the left or the right.
  <br />
- You can rotate the camera's view direction by holding the mouse's left click and move in 360 degree
+ You can rotate the camera's view direction by holding the mouse's left click and move in 360 degree.
  <br />
- You can zoom in and out by using the mouse's scroll wheel
+ You can zoom in and out by using the mouse's scroll wheel.
  <br />
+ You can access the website from anywhere with any resoultion just make sure your browser supports WebGL.
+ <br />
+ Natural sounds to make the scene lively.
 </p>
 <h3>Short description :</h3>
  <br />
@@ -27,7 +30,14 @@
  <br />
  Darkness covers the sky and the hurricane hits the lonely boat to toss it to the sharks while the lightning bolts covers the sky.
  <br />
- The boat drown in the ocean but after some time it floats back to surface to continue it's journey in the fog.
+ The boat has drown in the ocean but after some time it floats back to surface to continue it's journey in the fog.
+</p> 
+<p>
+ <h3>Some tricks :</h3>
+ The hurricane you see isn't a fancy 3D object like cone or cylinder or whatever it's just a simple 2D plane by making it rotates 45 degrees around it's y-axis you'll get the illusion of seeing a rotating cone , pretty cool eh?
+ The rain you see isn't created by any fancy engines it's just a simple points in random positions in the scene.
+ The simulation of the boxes motion is pretty simple , the cosine wave and that's it.
+ <br />
 </p> 
 <details>
  <summary>To do list :</summary>
