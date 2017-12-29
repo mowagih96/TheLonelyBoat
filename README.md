@@ -1,5 +1,8 @@
 <h1 align="center">CSE368: Computer Graphics Project</h1>
 <br />
+<h2>Name : Mohamed Wagih Ahmed</h2>
+<h2>ID : 14p6080</h2>
+<h2>Department : CESS</h2>
 <p align="center">
  <div>A stormy rainy dynamic scene created by using ThreeJS</div>
  <br />
