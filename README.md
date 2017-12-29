@@ -1,5 +1,4 @@
 <h1 align="center">CSE368: Computer Graphics Project</h1>
-<br />
 <h2>Name : Mohamed Wagih Ahmed
 <br />
 ID : 14p6080
