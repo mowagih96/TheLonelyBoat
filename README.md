@@ -1,12 +1,3 @@
-<h1 align="center">CSE368: Computer Graphics Project</h1>
-<h2>Name : Mohamed Wagih Ahmed
-<br />
-ID : 14p6080
-<br />
-Department : CESS
-<br />
-Submitted to : Dr.Mohamed Rehan & Eng.Ahmed Fathy
-</h2>
 <p align="center">
  <div>A stormy rainy dynamic scene created by using ThreeJS</div>
  <br />
