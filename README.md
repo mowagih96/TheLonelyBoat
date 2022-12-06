@@ -5,6 +5,7 @@
 </p>
 
 ![alt text](https://github.com/MohamedWagih96/TheLonelyBoat/blob/master/scene.png)
+
 <p>
  <h3>Features :</h3>
  <br />
@@ -40,8 +41,7 @@
  <br />
 </p> 
 <details>
- <summary>To do list : (In the future)</summary>
+ <summary>Todos:</summary>
  <div>1 - Making the ocean more dynamic with the meshes</div>
  <div>2 - Adding Sun , Moon , Wind , Human to the scene</div>
 </details>
-
